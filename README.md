@@ -9,3 +9,4 @@ On a system with nix-shell run:
 nix-shell
 cabal run
 ```
+Otherwise just use `cabal run`.
