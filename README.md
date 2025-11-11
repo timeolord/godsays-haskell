@@ -4,9 +4,10 @@ An homage to Terry A. Davis and templeOS.
 Displays a random bible verse from the King James Bible based on the current time.
 
 # Build
-On a system with nix-shell run:
+On a NixOS system:
 ```
-nix-shell
-cabal run
+nix build
 ```
 Otherwise just use `cabal run`.
+
+# Flakes
