@@ -1,5 +1,5 @@
 {
-  description = "Haskell Project Shell";
+  description = "Godsays Project";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -18,12 +18,16 @@
         pkgs = import nixpkgs {
           inherit system;
         };
+        compiled_package = pkgs.haskellPackages.developPackage {
+          root = ./.;
+        };
       in
       with pkgs;
       {
+        overlays.default = (final: perv: { godsays = compiled_package; });
+        packages.default = compiled_package;
         devShells.default = mkShell {
           packages = [
-            dos2unix
             (haskellPackages.ghcWithPackages (
               pkgs: with pkgs; [
                 cabal-install
