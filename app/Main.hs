@@ -15,7 +15,7 @@ main = do
   let bibles = godphrases bibleText
   let num = integerToInt $ diffTimeToPicoseconds $ utctDayTime currentTime
   let result = bibles !! mod num (length bibles)
-  putStrLn $ "God says...\n" ++ result
+  putStrLn result
 
 bibleText :: BS.ByteString
 bibleText = $(embedFileRelative "./app/bible.txt")
