@@ -71,7 +71,8 @@ executable godsays
                       time,
                       file-embed,
                       bytestring,
-                      utf8-string
+                      utf8-string,
+                      word8,
 
     -- Directories containing source files.
     hs-source-dirs:   app

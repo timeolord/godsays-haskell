@@ -28,6 +28,7 @@
         packages.default = compiled_package;
         devShells.default = mkShell {
           packages = [
+            haskell-language-server
             (haskellPackages.ghcWithPackages (
               pkgs: with pkgs; [
                 cabal-install
