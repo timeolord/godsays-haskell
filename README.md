@@ -1,13 +1,27 @@
-# godsays-haskell
-An homage to Terry A. Davis and templeOS.
+# godsays
 
-Displays a random bible verse from the King James Bible based on the current time.
+![gif of godsays running in the terminal](./gifs/godsays.gif)
+An homage to Terry A. Davis and TempleOS. Displays a random bible verse from the King James Bible based on the current time.
 
-# Build
-On a NixOS system:
+## Usage
+
+Run with:
+
 ```
-nix build
+nix run
 ```
-Otherwise just use `cabal run`.
 
-# Flakes
+## Development
+
+This project uses Nix flakes. Enter the dev shell with:
+
+```
+direnv allow
+```
+
+Then build or run with cabal:
+
+```
+cabal build
+cabal run
+```
