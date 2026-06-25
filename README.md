@@ -1,6 +1,6 @@
 # godsays
-ASDASD
-![gif of godsays running in the terminal](./gifs/godsays.gif)
+
+![gif of godsays running in the terminal](./gifs/godsay.gif)
 An homage to Terry A. Davis and TempleOS. Displays a random bible verse from the King James Bible based on the current time. 
 
 ## Usage
