@@ -45,6 +45,8 @@ nix run
 
 ## Development
 
+Template Haskell parses the Bible, adds book names, and embeds the finished UTF-8 text and a packed byte-offset table during compilation. At runtime, the program reads the current time, selects a verse with a constant-time lookup, and writes its bytes. No Bible parsing or list traversal happens at startup. Changes to `app/bible.txt` trigger recompilation of the embedded table.
+
 This project uses Nix flakes. Enter the dev shell with:
 
 ```

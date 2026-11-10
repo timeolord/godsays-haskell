@@ -5,6 +5,8 @@ import Control.Monad (unless)
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.UTF8 as BSU
 import Data.List (isInfixOf, isPrefixOf)
+import EmbeddedBible (bible_table)
+import VerseTable (lookup_verse)
 
 assert_equal :: (Eq a, Show a) => String -> a -> a -> IO ()
 assert_equal label expected actual = unless (expected == actual) $
@@ -38,6 +40,14 @@ main = do
     ["Genesis 1:1 said ſaid against bleſſed his Spirit s's s’s ⁊ ye."]
     (godphrases $ BSU.fromString "1:1 said ſaid against bleſſed his Spirit s's s’s ⁊ ye.")
   verses <- godphrases <$> BS.readFile "app/bible.txt"
+  assert_equal "compiled lookup preserves every verse" verses
+    [BSU.toString $ lookup_verse bible_table index | index <- [0 .. toInteger (length verses) - 1]]
+  assert_equal "compiled lookup wraps" (head verses)
+    (BSU.toString $ lookup_verse bible_table $ toInteger $ length verses)
+  assert_equal "compiled lookup accepts negative seeds" (last verses)
+    (BSU.toString $ lookup_verse bible_table (-1))
+  assert_equal "compiled lookup accepts large timestamps" (verses !! fromInteger (86400000000000000 `mod` toInteger (length verses)))
+    (BSU.toString $ lookup_verse bible_table 86400000000000000)
   let openings = filter (isInfixOf " 1:1 ") verses
   assert_equal "verse count" 31102 (length verses)
   assert_equal "book count" 66 (length openings)

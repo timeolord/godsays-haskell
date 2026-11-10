@@ -1,21 +1,12 @@
-{-# LANGUAGE TemplateHaskell #-}
-
 module Main where
 
-import Bible (godphrases)
-import qualified Data.ByteString as BS
-import Data.FileEmbed (embedFileRelative)
-import Data.Time.Clock
-import GHC.Num
+import qualified Data.ByteString.Char8 as BS
+import Data.Time.Clock (diffTimeToPicoseconds, getCurrentTime, utctDayTime)
+import EmbeddedBible (bible_table)
+import VerseTable (lookup_verse)
 
 main :: IO ()
 main = do
-  currentTime <- getCurrentTime
-  let bibles = godphrases bibleText
-  let num = integerToInt $ diffTimeToPicoseconds $ utctDayTime currentTime
-  let result = bibles !! mod num (length bibles)
-  putStrLn result
-
-bibleText :: BS.ByteString
-bibleText = $(embedFileRelative "./app/bible.txt")
+  current_time <- getCurrentTime
+  BS.putStrLn $ lookup_verse bible_table (diffTimeToPicoseconds $ utctDayTime current_time)
 
